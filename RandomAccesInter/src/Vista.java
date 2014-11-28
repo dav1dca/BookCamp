@@ -87,16 +87,17 @@ public class Vista extends JFrame {
         panel_6.setLayout(new BorderLayout(0, 0));
         
         // Argumentos??
-        JComboBox comboBox = new JComboBox();
-		comboBox.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
-		    	  JComboBox aux =(JComboBox)e.getSource();
-		    	  columnaFiltrada = (String) aux.getSelectedItem();
-		      }
-		});
-		for(int i=0; i<nombreColumnas.length; i++){
+      JComboBox comboBox = new JComboBox();
+      for(int i=0; i<nombreColumnas.length; i++){
 			comboBox.addItem(nombreColumnas[i]);
 		}
+		comboBox.addActionListener(new ActionListener() {
+	      public void actionPerformed(ActionEvent e) {
+		    	  JComboBox aux =(JComboBox)e.getSource();
+	    	  columnaFiltrada = (String) aux.getSelectedItem();
+		      }
+		});
+		
 		
 		
 		
@@ -114,11 +115,13 @@ public class Vista extends JFrame {
         textField = new JTextField();
 		textField.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
-            	JTextField textField = (JTextField) e.getSource();            	
-            	datosBusqueda = b.getBooks(columnaFiltrada, textField.getText());            	
-            	table.setModel(getTableInfo());
-            	table.repaint();
-            }
+            	//JComboBox aux =(JComboBox)e.getSource();
+//		    	  columnaFiltrada = (String) aux.getSelectedItem();
+//           	JTextField textField = (JTextField) e.getSource();            	
+//            	datosBusqueda = b.getBooks(columnaFiltrada, textField.getText());            	
+//            	table.setModel(getTableInfo());
+//           	table.repaint();
+           }
 		});
 		
 		
@@ -127,6 +130,20 @@ public class Vista extends JFrame {
         textField.setColumns(10);
         
         JButton btnNewButton = new JButton("Buscar");
+        btnNewButton.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent arg0) {
+	    	  
+        		datosBusqueda = b.getBooks(columnaFiltrada, textField.getText());            	
+            	table.setModel(getTableInfo());
+           	table.repaint();
+           	datosBusqueda = b.getBooks(columnaFiltrada, textField.getText());            	
+        	table.setModel(getTableInfo());
+       	table.repaint();
+        		
+        		
+        	}
+        });
         panel_5.add(btnNewButton, BorderLayout.EAST);
         
         JPanel panel_1 = new JPanel();
