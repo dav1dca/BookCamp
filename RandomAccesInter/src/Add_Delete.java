@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -17,6 +18,7 @@ import javax.swing.JTextField;
 
 import java.awt.FlowLayout;
 
+import com.apple.dnssd.TXTRecord;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
@@ -29,10 +31,13 @@ import java.awt.Component;
 
 import javax.swing.Box;
 import javax.swing.JLabel;
+
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class Add_Delete extends JFrame {
 
@@ -43,6 +48,28 @@ public class Add_Delete extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private JPanel panel_3;
+	private JPanel panel_4;
+	private JPanel panel_6;
+	private JPanel panel_7;
+	private JPanel panel_8;
+	private JPanel panel_9;
+	private JPanel panel_10;
+	private JPanel panel_11;
+	private JPanel panel_5;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
+	private JPanel panel_1;
+	private JButton btnNewButton;
+	private JButton btnDeleteBook;
+	private JPanel panel;
+	private JPanel panel_2;
+	private Component horizontalStrut_6;
+	private Component horizontalStrut_7;
+	private Component horizontalStrut_8;
+	private BookStore bookstore;
+	private Vista vista;
+	private Book book;
 
 	/**
 	 * Launch the application.
@@ -60,6 +87,48 @@ public class Add_Delete extends JFrame {
 		});
 	}
 
+	private void borrarid() {
+		panel_3.setVisible(true);
+		btnNewButton.setVisible(false);
+		btnNewButton_1.setVisible(false);
+		panel_7.setVisible(false);
+		panel_8.setVisible(false);
+		panel_9.setVisible(false);
+		panel_10.setVisible(false);
+		panel_11.setVisible(false);
+	}
+
+	private void alertaBorrar() {
+		JFrame alert=new JFrame();
+		JLabel a=new JLabel("Elemento borrado");
+		alert.add(a);
+		alert.setLocationRelativeTo(null);
+		alert.pack();
+		alert.setVisible(true);
+	}
+	private void alertaAñadir() {
+		JFrame alert=new JFrame();
+		JLabel a=new JLabel("Elemento Añadido");
+		alert.add(a);
+		alert.setLocationRelativeTo(null);
+		alert.pack();
+		alert.setVisible(true);
+	}
+	private void añadirlibros(){
+		int id=Integer.parseInt(textField.getText());
+		String titulo=textField_1.getText();
+		int autor=Integer.parseInt(textField_1.getText());
+		int anio=Integer.parseInt(textField_1.getText());
+		int editorial=Integer.parseInt(textField_1.getText());
+		int stock=Integer.parseInt(textField_1.getText());
+		Book boook=new Book();
+		boook.setTitulo(titulo);
+		boook.setFk_Autor(autor);
+		boook.setAnio(anio);
+		boook.setFk_Editorial(editorial);
+		boook.setStock(stock);
+	}
+
 	/**
 	 * Create the frame.
 	 */
@@ -70,132 +139,163 @@ public class Add_Delete extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(2, 0, 0, 0));
-		
-		JPanel panel = new JPanel();
+
+		panel = new JPanel();
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(2, 0, 0, 0));
-		
-		JPanel panel_1 = new JPanel();
+
+		panel_1 = new JPanel();
 		panel.add(panel_1);
 		panel_1.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		Component horizontalGlue_1 = Box.createHorizontalGlue();
-		panel_1.add(horizontalGlue_1);
-		
-		JButton btnNewButton = new JButton("Add Book");
+
+		horizontalStrut_6 = Box.createHorizontalStrut(20);
+		panel_1.add(horizontalStrut_6);
+
+		btnNewButton = new JButton("Add Book");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				panel_3.setVisible(true);
+				btnNewButton_2.setVisible(false);
+				btnDeleteBook.setVisible(false);
+				
+
 			}
 		});
 		panel_1.add(btnNewButton);
-		
-		Component horizontalGlue = Box.createHorizontalGlue();
-		panel_1.add(horizontalGlue);
-		 ButtonGroup group = new ButtonGroup();
-		
-		JButton btnDeleteBook = new JButton("Delete Book");
+
+		horizontalStrut_7 = Box.createHorizontalStrut(20);
+		panel_1.add(horizontalStrut_7);
+
+		btnDeleteBook = new JButton("Delete Book");
+		btnDeleteBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				borrarid();
+				
+			}
+		});
 		panel_1.add(btnDeleteBook);
-		   
-		Component horizontalGlue_2 = Box.createHorizontalGlue();
-		panel_1.add(horizontalGlue_2);
-		
-		JPanel panel_2 = new JPanel();
+
+		horizontalStrut_8 = Box.createHorizontalStrut(20);
+		panel_1.add(horizontalStrut_8);
+
+		panel_2 = new JPanel();
 		panel.add(panel_2);
-		
-		JPanel panel_3 = new JPanel();
+
+		panel_3 = new JPanel();
+		panel_3.setVisible(false);
 		contentPane.add(panel_3);
 		panel_3.setLayout(new GridLayout(0, 2, 0, 0));
-		
-		JPanel panel_4 = new JPanel();
+
+		panel_4 = new JPanel();
 		panel_3.add(panel_4);
 		panel_4.setLayout(new GridLayout(6, 0, 0, 0));
-		
-		JPanel panel_6 = new JPanel();
+
+		panel_6 = new JPanel();
 		panel_4.add(panel_6);
-		
+
 		JLabel lblId = new JLabel("ID");
 		panel_6.add(lblId);
-		
+
 		Component horizontalStrut = Box.createHorizontalStrut(34);
 		panel_6.add(horizontalStrut);
-		
+
 		textField = new JTextField();
 		panel_6.add(textField);
 		textField.setColumns(10);
-		
-		JPanel panel_8 = new JPanel();
-		panel_4.add(panel_8);
-		
+
+		panel_7 = new JPanel();
+		panel_4.add(panel_7);
+
 		JLabel lblTitulo = new JLabel("Titulo");
-		panel_8.add(lblTitulo);
-		
+		panel_7.add(lblTitulo);
+
 		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
-		panel_8.add(horizontalStrut_1);
-		
+		panel_7.add(horizontalStrut_1);
+
 		textField_1 = new JTextField();
-		panel_8.add(textField_1);
+		panel_7.add(textField_1);
 		textField_1.setColumns(10);
-		
-		JPanel panel_9 = new JPanel();
-		panel_4.add(panel_9);
-		
+
+		panel_8 = new JPanel();
+		panel_4.add(panel_8);
+
 		JLabel lblAutor = new JLabel("Autor");
-		panel_9.add(lblAutor);
-		
+		panel_8.add(lblAutor);
+
 		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
-		panel_9.add(horizontalStrut_2);
-		
+		panel_8.add(horizontalStrut_2);
+
 		textField_2 = new JTextField();
-		panel_9.add(textField_2);
+		panel_8.add(textField_2);
 		textField_2.setColumns(10);
-		
-		JPanel panel_10 = new JPanel();
-		panel_4.add(panel_10);
-		
+
+		panel_9 = new JPanel();
+		panel_4.add(panel_9);
+
 		JLabel lblAo = new JLabel("A\u00F1o");
-		panel_10.add(lblAo);
-		
+		panel_9.add(lblAo);
+
 		Component horizontalStrut_3 = Box.createHorizontalStrut(29);
-		panel_10.add(horizontalStrut_3);
-		
+		panel_9.add(horizontalStrut_3);
+
 		textField_3 = new JTextField();
-		panel_10.add(textField_3);
+		panel_9.add(textField_3);
 		textField_3.setColumns(10);
-		
-		JPanel panel_11 = new JPanel();
-		panel_4.add(panel_11);
-		
+
+		panel_10 = new JPanel();
+		panel_4.add(panel_10);
+
 		JLabel lblEditorial = new JLabel("Editorial");
-		panel_11.add(lblEditorial);
-		
+		panel_10.add(lblEditorial);
+
 		Component horizontalStrut_4 = Box.createHorizontalStrut(12);
-		panel_11.add(horizontalStrut_4);
-		
+		panel_10.add(horizontalStrut_4);
+
 		textField_4 = new JTextField();
-		panel_11.add(textField_4);
+		panel_10.add(textField_4);
 		textField_4.setColumns(10);
-		
-		JPanel panel_12 = new JPanel();
-		panel_4.add(panel_12);
-		
+
+		panel_11 = new JPanel();
+		panel_4.add(panel_11);
+
 		JLabel lblStock = new JLabel("Stock");
-		panel_12.add(lblStock);
-		
+		panel_11.add(lblStock);
+
 		Component horizontalStrut_5 = Box.createHorizontalStrut(25);
-		panel_12.add(horizontalStrut_5);
-		
+		panel_11.add(horizontalStrut_5);
+
 		textField_5 = new JTextField();
-		panel_12.add(textField_5);
+		panel_11.add(textField_5);
 		textField_5.setColumns(10);
-		
-		JPanel panel_5 = new JPanel();
+
+		panel_5 = new JPanel();
 		panel_3.add(panel_5);
 		panel_5.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		JButton btnNewButton_1 = new JButton("A\u00F1adir");
+
+		btnNewButton_1 = new JButton("A\u00F1adir");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//miguel mira esto
+				
+				añadirlibros(); // mira este metodo 
+				alertaAñadir();
+
+			}
+		});
 		panel_5.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("Borrar");
+
+		btnNewButton_2 = new JButton("Borrar");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int id = Integer.parseInt(textField.getText());
+				bookstore.DeleteBookFromBin(id);
+				alertaBorrar();
+
+			}
+		});
 		panel_5.add(btnNewButton_2);
+
 	}
+
 }

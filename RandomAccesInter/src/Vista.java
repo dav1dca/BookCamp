@@ -13,6 +13,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -31,6 +32,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -55,7 +57,6 @@ public class Vista extends JFrame {
         });
     	
     	// No permitir el resize de menos de 700,500
-    	
         setTitle("Menu Example");
         setSize(701, 487);
         
