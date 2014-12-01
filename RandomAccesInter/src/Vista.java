@@ -157,6 +157,7 @@ public class Vista extends JFrame {
         	public void mouseClicked(MouseEvent arg0) {
         		Add_Delete ventana = new Add_Delete();
         		ventana.setVisible(true);
+        		
         	}
         });
         panel_1.add(btnNewButton_1);
