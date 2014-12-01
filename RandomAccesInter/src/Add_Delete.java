@@ -128,7 +128,7 @@ public class Add_Delete extends JFrame {
 				
 				
 				try {
-					book = new Book(Integer.valueOf(textID.getText()), textTitulo.getText(), Integer.valueOf(textAutor.getText()), Integer.valueOf(textEditorial.getText()),
+					book = new Book(Integer.valueOf(textID.getText()), textTitulo.getText(), Integer.parseInt(textAutor.getText()), Integer.valueOf(textEditorial.getText()),
 							Integer.valueOf(textAnio.getText()), Integer.valueOf(textStock.getText()));
 					bok.AddBookToBIN(book);
 				} catch (IOException e1) {
