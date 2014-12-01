@@ -18,7 +18,6 @@ import javax.swing.JTextField;
 
 import java.awt.FlowLayout;
 
-import com.apple.dnssd.TXTRecord;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
