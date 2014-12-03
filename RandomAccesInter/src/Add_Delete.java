@@ -11,11 +11,14 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import com.sun.glass.events.MouseEvent;
+
+import javax.swing.ImageIcon;
 
 
 public class Add_Delete extends JFrame {
@@ -52,7 +55,7 @@ public class Add_Delete extends JFrame {
 	 * Create the frame.
 	 */
 	public Add_Delete() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 540, 380);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,7 +80,8 @@ public class Add_Delete extends JFrame {
 		final JLabel lblAo = new JLabel("A\u00F1o");
 		final JLabel lblEditorial = new JLabel("Editorial");
 		final JLabel lblStock = new JLabel("Stock");
-		final JButton btnAnadir = new JButton("A\u00F1adir");
+		final JButton btnAnadir = new JButton("");
+		btnAnadir.setIcon(new ImageIcon(Add_Delete.class.getResource("/imagenes/a\u00F1adir1.png")));
 		btnAnadir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -131,6 +135,21 @@ public class Add_Delete extends JFrame {
 					book = new Book(Integer.valueOf(textID.getText()), textTitulo.getText(), Integer.parseInt(textAutor.getText()), Integer.valueOf(textEditorial.getText()),
 							Integer.valueOf(textAnio.getText()), Integer.valueOf(textStock.getText()));
 					bok.AddBookToBIN(book);
+					if(bok.AddBookToBIN(book)){
+						int vuelta = JOptionPane.showOptionDialog(e.getComponent(), "Libro añadido", "Libro añadido",
+								   JOptionPane.YES_NO_CANCEL_OPTION,
+								   JOptionPane.QUESTION_MESSAGE,
+								   null,    // null for default icon
+								   new Object[] { "OK" },   // null for YES, NO y CANCEL
+								   "opcion 1");
+					   }else{
+						   int vuelta = JOptionPane.showOptionDialog(e.getComponent(), "Libro No añadido", "Libro No añadido",
+								   JOptionPane.YES_NO_CANCEL_OPTION,
+								   JOptionPane.QUESTION_MESSAGE,
+								   null,    // null for default icon
+								   new Object[] { "OK" },   // null for YES, NO y CANCEL
+								   "opcion 1");
+					}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -139,12 +158,28 @@ public class Add_Delete extends JFrame {
 				
 			}
 		});
-		final JButton btnBorrar = new JButton("Borrar");
+		final JButton btnBorrar = new JButton("");
+		btnBorrar.setIcon(new ImageIcon(Add_Delete.class.getResource("/imagenes/borrar1.png")));
 		btnBorrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				book.Id = Integer.parseInt(textID.getText());
 				bok.DeleteBookFromBin(book.Id);
+				if(bok.DeleteBookFromBin(book.Id)){
+					int vuelta = JOptionPane.showOptionDialog(e.getComponent(), "Libro borrado", "Libro borrado",
+							   JOptionPane.YES_NO_CANCEL_OPTION,
+							   JOptionPane.QUESTION_MESSAGE,
+							   null,    // null for default icon
+							   new Object[] { "OK" },   // null for YES, NO y CANCEL
+							   "opcion 1");
+				   }else{
+					   int vuelta = JOptionPane.showOptionDialog(e.getComponent(), "Libro No borrado", "Libro No borrado",
+							   JOptionPane.YES_NO_CANCEL_OPTION,
+							   JOptionPane.QUESTION_MESSAGE,
+							   null,    // null for default icon
+							   new Object[] { "OK" },   // null for YES, NO y CANCEL
+							   "opcion 1");
+				}
 				
 				
 			}
@@ -210,14 +245,8 @@ public class Add_Delete extends JFrame {
 				textAnio.getText();
 				textEditorial.getText();
 				textStock.getText();
-				////
 				
-//				datosBusqueda = b.getBooks(columnaFiltrada, textField.getText());            	
-//            	table.setModel(getTableInfo());
-//           	table.repaint();
-//           	datosBusqueda = b.getBooks(columnaFiltrada, textField.getText());            	
-//        	table.setModel(getTableInfo());
-//       	table.repaint();
+				
 			}
 		});
 		panel_1.add(btnDeleteBook);
@@ -329,7 +358,7 @@ public class Add_Delete extends JFrame {
 		
 		panel_3.add(panel_5);
 		panel_5.setLayout(new GridLayout(1, 0, 0, 0));
-		
+	
 		
 	}
 }

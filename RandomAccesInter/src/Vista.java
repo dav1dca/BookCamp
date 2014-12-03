@@ -33,6 +33,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class Vista extends JFrame {
 	private JTable table;
@@ -46,6 +48,7 @@ public class Vista extends JFrame {
 	
 	
     public Vista() {
+    	setBackground(Color.CYAN);
         
     	this.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent e) {
@@ -56,7 +59,7 @@ public class Vista extends JFrame {
     	
     	// No permitir el resize de menos de 700,500
     	
-        setTitle("Menu Example");
+        setTitle("Libros");
         setSize(701, 487);
         
         
@@ -115,12 +118,7 @@ public class Vista extends JFrame {
         textField = new JTextField();
 		textField.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
-            	//JComboBox aux =(JComboBox)e.getSource();
-//		    	  columnaFiltrada = (String) aux.getSelectedItem();
-//           	JTextField textField = (JTextField) e.getSource();            	
-//            	datosBusqueda = b.getBooks(columnaFiltrada, textField.getText());            	
-//            	table.setModel(getTableInfo());
-//           	table.repaint();
+            
            }
 		});
 		
@@ -150,8 +148,9 @@ public class Vista extends JFrame {
         FlowLayout flowLayout = (FlowLayout) panel_1.getLayout();
         flowLayout.setAlignment(FlowLayout.RIGHT);
         panel.add(panel_1, BorderLayout.SOUTH);
-        
-        JButton btnNewButton_1 = new JButton("Add/Delete");
+       
+        JButton btnNewButton_1 = new JButton("");
+        btnNewButton_1.setIcon(new ImageIcon(Vista.class.getResource("/imagenes/add_subtract.jpg")));
         btnNewButton_1.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent arg0) {
@@ -169,6 +168,7 @@ public class Vista extends JFrame {
         panel.add(scrollPane, BorderLayout.CENTER);
         
         JMenuBar menuBar = new JMenuBar();
+        menuBar.setBackground(new Color(135, 206, 250));
         setJMenuBar(menuBar);
         
         JMenu mnInicio = new JMenu("Inicio");
@@ -180,7 +180,14 @@ public class Vista extends JFrame {
         JMenu mnArchivo = new JMenu("Archivo");
         menuBar.add(mnArchivo);
         
-        JMenuItem mntmAadirCsv = new JMenuItem("A\u00F1adir CSV");
+        JMenuItem mntmAadirCsv = new JMenuItem("A\u00F1adir libro");
+        mntmAadirCsv.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		Add_Delete ventana = new Add_Delete();
+        		ventana.setVisible(true);
+        	}
+        });
         mnArchivo.add(mntmAadirCsv);
     }
     
