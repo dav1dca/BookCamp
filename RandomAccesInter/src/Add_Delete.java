@@ -35,22 +35,7 @@ public class Add_Delete extends JFrame {
 	private String[][] datosBusqueda;
 	private String[] nombreColumnas = {"ID","TITLE","AUTHOR","PUBLISHER","YEAR","STOCK"};
 
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Add_Delete frame = new Add_Delete();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -86,49 +71,6 @@ public class Add_Delete extends JFrame {
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				
-				
-//				book = new Book();
-//				if (!(textID.getText().equals(""))) {			
-//							
-//					book.setid(Integer.valueOf(textID.getText()));
-//													
-//					if (!(textTitulo.getText().equals(""))) {
-//						System.out.println("titulo leido");		
-//						book.setTitulo(textTitulo.getText());							
-//					} else {
-//						book.setTitulo("SIN TITULO");
-//					}							
-//					
-//					if ((textAutor.getText().equals(""))) {
-//						book.setFk_Autor(0);
-//					} else {
-//						book.setFk_Autor(Integer.valueOf(textAutor.getText()));
-//					}							
-//						
-//					if ((textEditorial.getText().equals(""))) {
-//						book.setFk_Editorial(0);
-//					} else {
-//						book.setFk_Editorial(Integer.valueOf(textEditorial.getText()));
-//					}							
-//						
-//					if ((textAnio.getText().equals(""))) {
-//						book.setFk_Editorial(0);
-//					} else {
-//						book.setFk_Editorial(Integer.valueOf(textAnio.getText()));
-//					}
-//					
-//					if ((textStock.getText().equals(""))) {
-//						book.setStock(0);	
-//					} else {
-//						book.setStock(Integer.valueOf(textStock.getText()));	
-//					}
-//				}						
-//					
-//				try {
-//					bok.AddBookToBIN(book);
-//				} catch (IOException e1) {						
-//					e1.printStackTrace();
-//				}
 				
 				
 				try {

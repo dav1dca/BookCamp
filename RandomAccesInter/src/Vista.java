@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JPanel;
 
@@ -31,9 +32,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+
 import javax.swing.ImageIcon;
 
 public class Vista extends JFrame {
@@ -175,6 +178,13 @@ public class Vista extends JFrame {
         menuBar.add(mnInicio);
         
         JMenuItem mntmSalir = new JMenuItem("Salir");
+        mntmSalir.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent arg0) {
+        	
+        		
+        	}
+        });
         mnInicio.add(mntmSalir);
         
         JMenu mnArchivo = new JMenu("Archivo");
@@ -189,6 +199,23 @@ public class Vista extends JFrame {
         	}
         });
         mnArchivo.add(mntmAadirCsv);
+        
+        JMenu mnAbout = new JMenu("Sobre Nosotros");
+        menuBar.add(mnAbout);
+        
+        JMenuItem mntmSobreNosotros = new JMenuItem("Sobre Nosotros");
+        mntmSobreNosotros.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		int vuelta = JOptionPane.showOptionDialog(e.getComponent(), "Creadores del proyecto", "David Calvo y Miguel Martin",
+						   JOptionPane.YES_NO_CANCEL_OPTION,
+						   JOptionPane.QUESTION_MESSAGE,
+						   null,    // null for default icon
+						   new Object[] { "Aceptar" },   // null for YES, NO y CANCEL
+						   "opcion 1");
+        	}
+        });
+        mnAbout.add(mntmSobreNosotros);
     }
     
     private DefaultTableModel getTableInfo(){
